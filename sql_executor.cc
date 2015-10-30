@@ -1302,22 +1302,7 @@ sub_select(JOIN *join, QEP_TAB *const qep_tab,bool end_of_records)
       if (is_sampling_query)
       {
         double x = ((double) rand() / (RAND_MAX));
-
-        // trace x
-        my_decimal temp;
-        double2my_decimal(E_DEC_FATAL_ERROR, x, &temp);
-
-        String buf;
-        my_decimal2string(E_DEC_FATAL_ERROR, &temp, 0, 0, 0, &buf);
-        trace_sampling.add_alnum("random_rate", buf.ptr()); 
-
         double s = n * 1.0 / N;
-
-        // trace s
-        double2my_decimal(E_DEC_FATAL_ERROR, s, &temp);
-        my_decimal2string(E_DEC_FATAL_ERROR, &temp, 0, 0, 0, &buf);
-        trace_sampling.add_alnum("remaining ratio", buf.ptr()); 
-
 
         if (s < x)
         {
